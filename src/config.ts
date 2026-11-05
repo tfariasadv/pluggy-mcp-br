@@ -8,6 +8,7 @@ export const CURSOR_REDIRECT_URIS = [
   'cursor://anysphere.cursor-mcp/oauth/callback',
   'https://www.cursor.com/agents/mcp/oauth/callback',
   'http://localhost:8787/callback',
+  'https://claude.ai/api/mcp/auth_callback',
 ] as const;
 
 export const MIN_PASSWORD_LENGTH = 16;
