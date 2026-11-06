@@ -363,6 +363,7 @@ function presentTransaction(transaction: NormalizedTransaction) {
     masked_receiver_document: maskDocument(transaction.receiverDocumentType, transaction.receiverDocument),
     masked_payer_account: transaction.payerAccount ? maskAccountNumber(transaction.payerAccount) : null,
     masked_receiver_account: transaction.receiverAccount ? maskAccountNumber(transaction.receiverAccount) : null,
+    card_last4: transaction.cardLast4 ?? null,
     [UNTRUSTED_FIELD]: maskedFence(untrusted),
   };
 }

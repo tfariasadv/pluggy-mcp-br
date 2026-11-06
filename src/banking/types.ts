@@ -36,6 +36,8 @@ export interface NormalizedTransaction {
   receiverDocument: string | null;
   payerAccount: string | null;
   receiverAccount: string | null;
+  /** Last 4 digits of the plastic used, when the institution reports it. */
+  cardLast4?: string | null;
 }
 
 export interface NormalizedBill {
