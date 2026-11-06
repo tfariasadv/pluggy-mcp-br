@@ -231,6 +231,9 @@ interface RawTransaction {
   category?: string | null;
   status?: string;
   description?: string;
+  creditCardMetadata?: {
+    cardNumber?: string | null;
+  } | null;
   paymentData?: {
     paymentMethod?: string;
     payer?: RawParty;
@@ -327,7 +330,14 @@ function normalizeTransaction(transaction: RawTransaction): NormalizedTransactio
     receiverDocument: transaction.paymentData?.receiver?.documentNumber?.value ?? null,
     payerAccount: transaction.paymentData?.payer?.accountNumber ?? null,
     receiverAccount: transaction.paymentData?.receiver?.accountNumber ?? null,
+    cardLast4: lastFour(transaction.creditCardMetadata?.cardNumber),
   };
+}
+
+function lastFour(value: string | null | undefined): string | null {
+  if (typeof value !== 'string') return null;
+  const digits = value.replace(/\D/g, '');
+  return digits.length >= 4 ? digits.slice(-4) : null;
 }
 
 function normalizeInvestment(investment: RawInvestment, itemId: string): NormalizedInvestment {
